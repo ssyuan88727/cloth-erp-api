@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.misstilo.cloth_erp_api.mapper.product.productSku.ProductSkuMapper">
+  <!-- Result Map for ProductSku -->
+  <resultMap id="productSkuResultMap" type="com.misstilo.cloth_erp_api.model.product.productSku.ProductSkuResponse">
+    <id column="Id" property="id" />
+    <result column="SkuCode" property="skuCode" />
+    <result column="CostPrc" property="costPrc" />
+    <result column="IsActive" property="isActive" />
+  </resultMap>
+
+  <!-- Insert -->
+  <insert id="insert">
+    INSERT INTO ProductSku (ProductId, SupplierId, ColorId, SizeId, SkuCode, CostPrc, IsActive)
+    VALUES (#{productId}, #{supplierId}, #{colorId}, #{sizeId}, #{skuCode}, #{costPrc}, #{isActive})
+  </insert>
+  <!-- Delete -->
+  <delete id="delete">
+    DELETE FROM ProductSku
+    WHERE id = #{id}
+  </delete>
+  <!-- Update -->
+  <update id="update">
+    UPDATE ProductSku
+    <set>
+      <if test="!= null">
+        CostPrc = #{costPrc},
+      </if>
+      <if test="!= null">
+        IsActive = #{isActive},
+      </if>
+    </set>
+    <where>
+      Id = #{id}
+    </where>
+  </update>
+  <!-- Select -->
+  <select id="select" resultMap="productSkuResultMap">
+    SELECT *
+    FROM ProductSku
+    <where>
+      ProductId = #{productId}
+    </where>
+    ORDER BY Id
+  </select>
+</mapper>

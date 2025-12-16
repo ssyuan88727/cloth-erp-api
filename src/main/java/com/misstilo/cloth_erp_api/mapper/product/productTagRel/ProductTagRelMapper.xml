@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.misstilo.cloth_erp_api.mapper.product.productTagRel.ProductTagRelMapper">
+  <!-- Insert -->
+  <insert id="batchInsert" parameterType="com.misstilo.cloth_erp_api.model.product.product.ProductCreate">
+    INSERT INTO ProductTagRel (ProductId, TagId)
+    VALUES 
+    <foreach collection="list" item="item" separator=",">
+      (#{item.productId}, #{item.tagId})
+    </foreach>
+  </insert>
+  <!-- Delete -->
+  <delete id="deleteByProductId">
+    DELETE FROM ProductTagRel WHERE productId = #{productId}
+  </delete>
+</mapper>
