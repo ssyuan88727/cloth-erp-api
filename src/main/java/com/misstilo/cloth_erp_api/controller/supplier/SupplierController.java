@@ -15,7 +15,6 @@ import com.misstilo.cloth_erp_api.service.supplier.SupplierService;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,10 +25,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/supplier")
-@Builder
 public class SupplierController {
     @Autowired
-    private final SupplierService service;
+    private SupplierService service;
 
     @PostMapping("/insert")
     public ResponseModel<Integer> insert(@RequestBody @Valid SupplierCreate model) {
