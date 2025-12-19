@@ -16,6 +16,7 @@ import com.misstilo.cloth_erp_api.model.member.member.MemberCreate;
 import com.misstilo.cloth_erp_api.model.member.member.MemberQuery;
 import com.misstilo.cloth_erp_api.model.member.member.MemberResponse;
 import com.misstilo.cloth_erp_api.model.member.member.MemberUpdate;
+import com.misstilo.cloth_erp_api.model.response.ResponseModel;
 import com.misstilo.cloth_erp_api.service.member.MemberService;
 
 import jakarta.validation.Valid;
@@ -30,22 +31,22 @@ public class MemberController {
     private final MemberService service;
 
     @PostMapping("/insert")
-    public Integer insert(@RequestBody @Valid MemberCreate model) {
-        return service.insert(model);
+    public ResponseModel<Integer> insert(@RequestBody @Valid MemberCreate model) {
+        return ResponseModel.success(service.insert(model));
     }
 
     @DeleteMapping("/delete/{id}")
-    public Integer delete(@PathVariable @NotNull(message = "Delete: Id is required.") Integer id) {
-        return service.delete(id);
+    public ResponseModel<Integer> delete(@PathVariable @NotNull(message = "Delete: Id is required.") Integer id) {
+        return ResponseModel.success(service.delete(id));
     }
 
     @PutMapping("/update")
-    public Integer update(@RequestBody @Valid MemberUpdate model) {
-        return service.update(model);
+    public ResponseModel<Integer> update(@RequestBody @Valid MemberUpdate model) {
+        return ResponseModel.success(service.update(model));
     }
 
     @GetMapping("/select")
-    public List<MemberResponse> select(@Valid MemberQuery model) {
-        return service.select(model);
+    public ResponseModel<List<MemberResponse>> select(@Valid MemberQuery model) {
+        return ResponseModel.success(service.select(model));
     }
 }

@@ -25,7 +25,7 @@ public class ProductCreate {
     @NotBlank(message = "名稱不可為空")
     @Size(max = 20, message = "名稱不可超過20字")
     private String name;
-    private List<Integer> tag;
+    private List<Integer> tagIds;
     @NotNull(message = "價格不可為空")
     private BigDecimal unitPrc;
     private Boolean isActive;

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.misstilo.cloth_erp_api.model.product.productSku.ProductSkuCreate;
+import com.misstilo.cloth_erp_api.model.product.productSku.ProductSkuQuery;
 import com.misstilo.cloth_erp_api.model.product.productSku.ProductSkuResponse;
 import com.misstilo.cloth_erp_api.model.product.productSku.ProductSkuUpdate;
 import com.misstilo.cloth_erp_api.model.response.ResponseModel;
@@ -44,8 +45,8 @@ public class ProductSkuController {
     return ResponseModel.success(service.update(model));
   }
 
-  @GetMapping("/select/{productId}")
-  public ResponseModel<List<ProductSkuResponse>> select(@PathVariable @NotNull(message = "Select: ProductId is required.") Integer productId) {
-    return ResponseModel.success(service.select(productId));
+  @GetMapping("/select")
+  public ResponseModel<List<ProductSkuResponse>> select(ProductSkuQuery model) {
+    return ResponseModel.success(service.select(model.getId()));
   }
 }

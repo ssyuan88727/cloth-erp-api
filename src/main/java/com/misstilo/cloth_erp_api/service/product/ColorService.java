@@ -38,7 +38,9 @@ public class ColorService {
 
     @Transactional
     public List<ColorResponse> select(ColorQuery model) {
-        model.setCode(model.getCode().toUpperCase());
+        if (model.getCode() != null) {
+            model.setCode(model.getCode().toUpperCase());
+        }
         return mapper.select(model);
     }
 }

@@ -28,7 +28,7 @@ public class ProductService {
         model.setCode(model.getCode().toUpperCase());
         productMapper.insert(model);
         Integer productId = model.getId();
-        productTagRelService.batchInsert(productId, model.getTag());
+        productTagRelService.batchInsert(productId, model.getTagIds());
         return productId;
     }
 
@@ -40,13 +40,15 @@ public class ProductService {
 
     @Transactional
     public Integer update(ProductUpdate model) {
-        productTagRelService.updateByProductId(model.getId(), model.getTag());
+        productTagRelService.updateByProductId(model.getId(), model.getTagIds());
         return productMapper.update(model);
     }
 
     @Transactional
     public List<ProductResponse> select(ProductQuery model) {
-        model.setCode(model.getCode().toUpperCase());
+        if (model.getCode() != null) {
+            model.setCode(model.getCode().toUpperCase());
+        }
         return productMapper.select(model);
     }
 }

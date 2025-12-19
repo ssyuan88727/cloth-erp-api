@@ -38,7 +38,9 @@ public class SizeService {
 
     @Transactional
     public List<SizeResponse> select(SizeQuery model) {
-        model.setCode(model.getCode().toUpperCase());
+        if (model.getCode() != null) {
+            model.setCode(model.getCode().toUpperCase());
+        }
         return mapper.select(model);
     }
 }

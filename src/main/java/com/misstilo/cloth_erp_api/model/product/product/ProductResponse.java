@@ -18,7 +18,7 @@ public class ProductResponse {
   private Integer id;
   private String code;
   private String name;
-  private List<TagResponse> tag;
+  private List<TagResponse> tags;
   private BigDecimal unitPrc;
   private Boolean isActive;
   private String remark;
